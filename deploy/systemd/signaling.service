@@ -1,0 +1,19 @@
+[Unit]
+Description=P2P video signaling server
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/p2p-video/signaling -addr 127.0.0.1:8080
+Environment=ALLOWED_ORIGINS=https://<your-domain>
+Restart=on-failure
+RestartSec=3
+
+DynamicUser=true
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
